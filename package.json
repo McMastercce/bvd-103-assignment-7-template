@@ -1,0 +1,48 @@
+{
+  "name": "assignment-template",
+  "version": "1.0.0",
+  "description": "This is a template repository for the first assignment in BVD 103 at McMaster Continuing Education.",
+  "main": "index.ts",
+  "scripts": {
+    "start-server": "npm run generate-routes && tsx ./index.ts",
+    "lint": "npm run generate-routes && eslint ./**/*.ts",
+    "fix-lint": "npm run generate-routes && eslint --fix ./**/*.ts",
+    "check-types": "npm run generate-routes && tsc --noEmit",
+    "test": "npm run generate-routes && npm run generate-client && vitest",
+    "test:ci": "npm run generate-routes && vitest run",
+    "generate-routes": "tsoa spec-and-routes",
+    "generate-client": "openapi-generator-cli generate -i ./build/swagger.json -o ./client -g typescript-fetch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^5.0.0",
+    "@koa/router": "^12.0.1",
+    "koa": "^2.15.2",
+    "koa-bodyparser": "^4.4.1",
+    "koa-qs": "^3.0.0",
+    "koa-zod-router": "^2.2.0",
+    "koa2-swagger-ui": "^5.10.0",
+    "mongodb": "^6.5.0",
+    "tsoa": "^6.2.0",
+    "uuid": "^9.0.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.13.1",
+    "@types/koa": "~2.15.0",
+    "@types/koa__cors": "~5.0.0",
+    "@types/koa__router": "^12.0.4",
+    "@types/koa-qs": "~2.0.3",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "eslint": "^8.57.0",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "mongodb-memory-server": "^9.1.8",
+    "typescript": "^5.4.3",
+    "vitest": "^1.4.0"
+  }
+}
