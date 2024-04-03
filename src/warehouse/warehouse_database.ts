@@ -9,9 +9,12 @@ export interface WarehouseDatabaseAccessor {
   books: Collection<{ book: BookID, shelf: ShelfId, count: number }>
   orders: Collection<{ books: Record<BookID, number> }>
 }
+export interface AppWarehouseDatabaseState {
+  warehouse: WarehouseData
+}
 
-export async function getWarehouseDatabase (): Promise<WarehouseDatabaseAccessor> {
-  const database = client.db((global as any).MONGO_URI !== undefined ? Math.floor(Math.random() * 100000).toPrecision() : 'mcmasterful-warehouse')
+export async function getWarehouseDatabase (dbName?: string): Promise<WarehouseDatabaseAccessor> {
+  const database = client.db(dbName ?? Math.floor(Math.random() * 100000).toPrecision())
   const books = database.collection<{ book: BookID, shelf: ShelfId, count: number }>('books')
   await books.createIndex({ book: 1, shelf: 1 }, { unique: true })
   const orders = database.collection<{ books: Record<BookID, number> }>('orders')
@@ -154,7 +157,7 @@ if (import.meta.vitest !== undefined) {
   })
 }
 
-export async function getDefaultWarehouseDatabase (): Promise<WarehouseData> {
-  const db = await getWarehouseDatabase()
+export async function getDefaultWarehouseDatabase (name?: string): Promise<WarehouseData> {
+  const db = await getWarehouseDatabase(name)
   return new DatabaseWarehouse(db)
 }

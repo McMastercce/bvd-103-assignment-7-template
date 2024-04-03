@@ -4,14 +4,12 @@
   "description": "This is a template repository for the first assignment in BVD 103 at McMaster Continuing Education.",
   "main": "index.ts",
   "scripts": {
-    "start-server": "npm run generate-routes && tsx ./index.ts",
-    "lint": "npm run generate-routes && eslint ./**/*.ts",
-    "fix-lint": "npm run generate-routes && eslint --fix ./**/*.ts",
-    "check-types": "npm run generate-routes && tsc --noEmit",
-    "test": "npm run generate-routes && npm run generate-client && vitest",
-    "test:ci": "npm run generate-routes && vitest run",
-    "generate-routes": "tsoa spec-and-routes",
-    "generate-client": "openapi-generator-cli generate -i ./build/swagger.json -o ./client -g typescript-fetch"
+    "start-server": "./generate-openapi.sh && tsx ./index.ts",
+    "lint": "./generate-openapi.sh && eslint ./**/*.ts",
+    "fix-lint": "./generate-openapi.sh && eslint --fix ./**/*.ts",
+    "check-types": "./generate-openapi.sh && tsc --noEmit",
+    "test": "vitest",
+    "test:ci": "vitest run"
   },
   "keywords": [],
   "author": "",
