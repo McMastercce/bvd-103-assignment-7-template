@@ -25,6 +25,7 @@ export default async function (port?: number, randomizeDbs?: boolean): Promise<{
 
   app.use(async (ctx, next): Promise<void> => {
     ctx.state = state
+    console.log('Request: ', ctx.request.URL)
     await next()
   })
 
@@ -44,7 +45,6 @@ export default async function (port?: number, randomizeDbs?: boolean): Promise<{
   const koaRouter = new KoaRouter()
 
   RegisterRoutes(koaRouter)
-
   app.use(koaRouter.routes())
   app.use(koaSwagger({
     routePrefix: '/docs',
