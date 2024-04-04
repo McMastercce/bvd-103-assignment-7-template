@@ -18,5 +18,19 @@ services:
     command: npx -y tsx ./index.ts
     working_dir: /app
 
+  server2:
+    image: node:20
+    volumes:
+      - ./:/app
+    command: npx -y tsx ./index.ts
+    working_dir: /app
+    
+  server3:
+    image: node:20
+    volumes:
+      - ./:/app
+    command: npx -y tsx ./index.ts
+    working_dir: /app
+
   mongo:
     image: mongo:latest
