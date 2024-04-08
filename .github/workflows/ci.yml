@@ -43,8 +43,7 @@ jobs:
               with:
                 node-version: '20'           
             - run: npm install
-            - run: npm run generate-routes
-            - run: npm run generate-client
+            - run: ./generate-openapi.sh
             - uses: actions/upload-artifact@v4
               with:
                 name: client-sdk
