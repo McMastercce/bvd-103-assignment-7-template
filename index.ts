@@ -1,3 +1,3 @@
 import server from './server'
 
-await server(3000)
+server(3000).then(() => { console.log('Exiting Application') }).catch((err) => { console.error(err) })
